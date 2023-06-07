@@ -1,8 +1,7 @@
-import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, Platform } from 'react-native';
-import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
+import React from "react";
+import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
-const isAndroid = Platform.OS === 'android';
 export default function App() {
   return (
     <>
@@ -22,15 +21,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: isAndroid ? StatusBar.currentHeight : 0,
+    marginTop: StatusBar.currentHeight,
   },
   search: {
     padding: 16,
-    backgroundColor: 'red',
+    backgroundColor: "red",
   },
   list: {
     flex: 1,
     padding: 16,
-    backgroundColor: 'orange',
+    backgroundColor: "orange",
   },
 });
