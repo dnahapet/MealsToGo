@@ -4,12 +4,12 @@ import styled from "styled-components/native";
 
 const Title = styled.Text`
   padding: ${(props) => props.theme.space[3]};
-  color: black;
+  color: ${(props) => props.theme.colors.ui.primary};
 `;
 
 const RestaurantCard = styled(Card)`
   padding: ${(props) => props.theme.space[3]};
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
