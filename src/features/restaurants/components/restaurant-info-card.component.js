@@ -1,15 +1,14 @@
 import React from "react";
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
-import { spacing } from "../../../utils/sizes";
 
 const Title = styled.Text`
-  padding: ${spacing.lg}px;
+  padding: ${(props) => props.theme.space[3]};
   color: black;
 `;
 
 const RestaurantCard = styled(Card)`
-  padding: ${spacing.lg}px;
+  padding: ${(props) => props.theme.space[3]};
   background-color: white;
 `;
 
