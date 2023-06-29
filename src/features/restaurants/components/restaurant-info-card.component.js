@@ -1,10 +1,10 @@
 import React from "react";
-import { View } from "react-native";
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 const Info = styled.View`
   padding: ${(props) => props.theme.space[3]};
@@ -85,14 +85,16 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
           </Rating>
           <SectionEnd>
             {isClosedTemporarily && <CLosedTemp>CLOSED TEMPORARILY</CLosedTemp>}
-            <View style={{ paddingLeft: 16 }} />
-            {isOpen && (
-              <Open>
-                <SvgXml xml={open} width={20} height={20} />
-              </Open>
-            )}
-            <View style={{ paddingLeft: 16 }} />
-            <Icon source={{ uri: icon }} />
+            <Spacer position="left" size="large">
+              {isOpen && (
+                <Open>
+                  <SvgXml xml={open} width={20} height={20} />
+                </Open>
+              )}
+            </Spacer>
+            <Spacer position="left" size="large">
+              <Icon source={{ uri: icon }} />
+            </Spacer>
           </SectionEnd>
         </Section>
         <Address>{address}</Address>
