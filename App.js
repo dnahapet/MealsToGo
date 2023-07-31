@@ -5,9 +5,17 @@ import {
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "@expo/vector-icons/Ionicons";
+
+import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants/restaurants.screen";
+import { MapScreen } from "./src/features/restaurants/screens/map/map.screen";
+import { SettingsScreen } from "./src/features/restaurants/screens/settings/settings.screen";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -25,7 +33,29 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsScreen />
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ color, size }) => {
+                let iconName;
+                if (route.name === "Restaurants") {
+                  iconName = "md-restaurant";
+                } else if (route.name === "Map") {
+                  iconName = "md-map";
+                } else if (route.name === "Settings") {
+                  iconName = "md-settings";
+                }
+                return <Ionicons name={iconName} size={size} color={color} />;
+              },
+              tabBarActiveTintColor: "tomato",
+              tabBarInactiveTintColor: "gray",
+            })}
+          >
+            <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+            <Tab.Screen name="Map" component={MapScreen} />
+            <Tab.Screen name="Settings" component={SettingsScreen} />
+          </Tab.Navigator>
+        </NavigationContainer>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
